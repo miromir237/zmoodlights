@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import signal
 import time
 from random import randint
 
@@ -19,6 +20,14 @@ width,height=unicorn.get_shape()
 
 points = []
 
+class GracefulKiller:
+  kill_now = False
+  def __init__(self):
+    signal.signal(signal.SIGINT, self.exit_gracefully)
+    signal.signal(signal.SIGTERM, self.exit_gracefully)
+
+  def exit_gracefully(self,signum, frame):
+    self.kill_now = True
 
 class LightPoint:
 
@@ -50,14 +59,18 @@ def plot_points():
         unicorn.set_pixel(point.x, point.y, point.colour[0], point.colour[1], point.colour[2])
     unicorn.show()
 
-try:
-    while True:
+def main():
+    if len(points) < 5 and randint(0, 5) > 1:
+        points.append(LightPoint())
+    plot_points()
+    update_positions()
+    time.sleep(0.3)
 
-        if len(points) < 5 and randint(0, 5) > 1:
-            points.append(LightPoint())
-        plot_points()
-        update_positions()
-        time.sleep(0.3)
-        
-except KeyboardInterrupt:
-    pass
+if __name__ == '__main__':
+  killer = GracefulKiller()
+  while not killer.kill_now:
+      main()
+
+  print("End of the program. I was killed gracefully :)")
+
+     
