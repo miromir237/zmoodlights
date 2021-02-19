@@ -27,7 +27,7 @@ try:
             unicorn.set_pixel(x, u_height-y-1, r, g, b)
             #print("y = " + str(u_height-y-1))
             unicorn.show()
-            time.sleep(0.8)
+            time.sleep(0.1)
             clean()
         
 except KeyboardInterrupt:
