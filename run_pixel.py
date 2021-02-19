@@ -24,7 +24,7 @@ try:
         for x in range(0,u_width-1,1):
             unicorn.set_pixel(x, y, r, g, b)
             unicorn.show()
-            time.sleep(0.8)
+            time.sleep(0.1)
             clean()
         
 except KeyboardInterrupt:
