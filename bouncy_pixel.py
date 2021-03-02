@@ -44,7 +44,6 @@ def update_positions():
                 
 
 def plot_points():
-
     unicorn.clear()
     for point in points:
         unicorn.set_pixel(point.x, point.y, point.colour[0], point.colour[1], point.colour[2])
