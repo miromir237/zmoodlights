@@ -14,7 +14,7 @@ edit this example and  change 'unicorn.AUTO' to 'unicorn.HAT' below.
 
 unicorn.set_layout(unicorn.AUTO)
 unicorn.rotation(0)
-unicorn.brightness(0.3)
+#unicorn.brightness(0.3)
 width,height=unicorn.get_shape()
 
 points = []
@@ -49,9 +49,22 @@ def plot_points():
         unicorn.set_pixel(point.x, point.y, point.colour[0], point.colour[1], point.colour[2])
     unicorn.show()
 
+def setBrightness(currenttime):
+  currenthour = currenttime.tm_hour
+  # if it's between 10 am and 8 pm,
+  # use dimmer brightness
+  if(currenthour < 7 or currenthour > 22):
+    unicorn.brightness(0.2)
+  elif (currenthour > 7 and currenthour < 16):
+    unicorn.brightness(0.8)
+  else:
+    unicorn.brightness(0.4)
+
+## main
+
 try:
     while True:
-
+        setBrightness(time.localtime())
         if len(points) < 5 and randint(0, 5) > 1:
             points.append(LightPoint())
         plot_points()

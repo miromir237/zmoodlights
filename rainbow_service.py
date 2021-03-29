@@ -46,6 +46,17 @@ class GracefulInterruptHandler(object):
 
         return True
 
+def setBrightness(currenttime):
+  currenthour = currenttime.tm_hour
+  # if it's between 10 am and 8 pm,
+  # use dimmer brightness
+  if(currenthour < 7 or currenthour > 22):
+    unicorn.brightness(0.2)
+  elif (currenthour > 7 and currenthour < 16):
+    unicorn.brightness(0.8)
+  else:
+    unicorn.brightness(0.4)
+
 def main(i):
     offset = 30
     for y in range(4):
@@ -60,6 +71,7 @@ def main(i):
                     g = max(0, min(255, g + offset))
                     b = max(0, min(255, b + offset))
                     unicorn.set_pixel(x,y,int(r),int(g),int(b))
+    setBrightness(time.localtime())
     unicorn.show()
     time.sleep(0.0666666)
 

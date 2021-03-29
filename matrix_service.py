@@ -41,24 +41,36 @@ class GracefulInterruptHandler(object):
 
         return True
 
+def setBrightness(currenttime):
+  currenthour = currenttime.tm_hour
+  # if it's between 10 am and 8 pm,
+  # use dimmer brightness
+  if(currenthour < 7 or currenthour > 22):
+    unicorn.brightness(0.2)
+  elif (currenthour > 7 and currenthour < 16):
+    unicorn.brightness(0.8)
+  else:
+    unicorn.brightness(0.4)
+
 def main(clock):
-   for person in blue_pilled_population:
+    for person in blue_pilled_population:
             y = person[1]
             for rgb in wrd_rgb:
                     if (y <= 7) and (y >= 0):
-                            unicorn.set_pixel(person[0], y, rgb[0], rgb[1], rgb[2])
+                        unicorn.set_pixel(person[0], y, rgb[0], rgb[1], rgb[2])
                     y += 1
             person[1] -= 1
-   unicorn.show()
-   time.sleep(0.1)
-   unicorn.clear()
-   #clock += 1
-   if clock % 5 == 0:
-           blue_pilled_population.append([randint(0,7), 7])
-   if clock % 7 == 0:
-           blue_pilled_population.append([randint(0,7), 7])
-   while len(blue_pilled_population) > 100:
-           blue_pilled_population.pop(0)
+    setBrightness(time.localtime())
+    unicorn.show()
+    time.sleep(0.1)
+    unicorn.clear()
+    #clock += 1
+    if clock % 5 == 0:
+        blue_pilled_population.append([randint(0,7), 7])
+    if clock % 7 == 0:
+        blue_pilled_population.append([randint(0,7), 7])
+    while len(blue_pilled_population) > 100:
+        blue_pilled_population.pop(0)
 
 if __name__ == '__main__':
     # Global variables
