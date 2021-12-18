@@ -60,12 +60,12 @@ def setBrightness(currenttime):
   currenthour = currenttime.tm_hour
   # if it's between 10 am and 8 pm,
   # use dimmer brightness
-  if(currenthour < 7 or currenthour > 22):
-    unicorn.brightness(0.2)
+  if(currenthour < 7 or currenthour > 21):
+    unicorn.brightness(0.1)
   elif (currenthour > 7 and currenthour < 16):
-    unicorn.brightness(0.8)
+    unicorn.brightness(0.5)
   else:
-    unicorn.brightness(0.4)
+    unicorn.brightness(0.5)
 
 def main():
     setBrightness(time.localtime())
