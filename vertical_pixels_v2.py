@@ -21,9 +21,9 @@ points = []
 
 class LightPoint:
 
-    def __init__(self):
-        self.x = randint(0, width - 1)
-        self.y = height
+    def __init__(self,xpos):
+        self.x = xpos
+        self.y = randint(1,5)
         self.dx = 0
         self.dy = -1
         self.colour = []
@@ -45,10 +45,11 @@ def plot_points():
 
 ## Main
 
+for i in range(0,8):
+    points.append(LightPoint(i))
+
 try:
     while True:
-        if len(points) < 7 and randint(0, 7) > 1:
-            points.append(LightPoint())
         plot_points()
         update_positions()
         time.sleep(0.3)        

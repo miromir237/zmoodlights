@@ -30,7 +30,6 @@ class GracefulKiller:
     self.kill_now = True
 
 class LightPoint:
-
     def __init__(self):
         self.x = randint(0, width - 1)
         self.y = randint(0, height - 1)
@@ -51,15 +50,25 @@ def update_positions():
         point.x += point.kx
         point.y += point.ky
                 
-
 def plot_points():
-
     unicorn.clear()
     for point in points:
         unicorn.set_pixel(point.x, point.y, point.colour[0], point.colour[1], point.colour[2])
     unicorn.show()
 
+def setBrightness(currenttime):
+  currenthour = currenttime.tm_hour
+  # if it's between 10 am and 8 pm,
+  # use dimmer brightness
+  if(currenthour < 7 or currenthour > 21):
+    unicorn.brightness(0.1)
+  elif (currenthour > 7 and currenthour < 16):
+    unicorn.brightness(0.5)
+  else:
+    unicorn.brightness(0.5)
+
 def main():
+    setBrightness(time.localtime())
     if len(points) < 5 and randint(0, 5) > 1:
         points.append(LightPoint())
     plot_points()

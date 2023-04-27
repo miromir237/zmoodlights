@@ -1,0 +1,12 @@
+[Unit]
+# Human readable name of the unit
+Description=Binary Clock Zmood Lights
+
+[Service]
+# Command to execute when the service is started
+Type=simple
+ExecStart=/usr/bin/python /home/pi/zmoodlights/binary_clock_service.py
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
