@@ -8,7 +8,7 @@ import unicornhat as unicorn
 
 print("""Snake pixels
 You should see randomly coloured dots crossing paths with each other.
-If you're using a Unicorn HAT and only half the screen lights up, 
+If you're using a Unicorn HAT and only half the screen lights up,
 edit this example and  change 'unicorn.AUTO' to 'unicorn.HAT' below.
 """)
 
@@ -24,24 +24,6 @@ class SnakePixels:
         self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
         self.head_colour = [0, 0, 255]  # blue color
         self.body_colour = [0, 255, 0]  # blue color
-
-
-    def move(self):
-        # Save current head position as next position for first body pixel
-        next_pos = list(self.head)
-        # Update head position
-        self.head[0] += self.direction[0]
-        self.head[1] += self.direction[1]
-
-        # Check for collision with edge and change direction if necessary
-        if self.head[0] < 0 or self.head[0] >= width:
-            self.direction[0] *= -1
-        if self.head[1] < 0 or self.head[1] >= height:
-            self.direction[1] *= -1
-
-        # Move body pixels
-        self.body.insert(0, next_pos)
-        self.body.pop()            
 
     def move_through_edges(self):
         # Save current head position as next position for first body pixel
@@ -67,17 +49,37 @@ class SnakePixels:
         self.body.insert(0, next_pos)
         self.body.pop()
 
+    # This method is used to move the snake around the screen and bounce it
+    # off the edges.
+    def move_bounce_edges(self):
+        # Save current head position as next position for first body pixel
+        next_pos = list(self.head)
+        # Update head position
+        self.head[0] += self.direction[0]
+        self.head[1] += self.direction[1]
+
+        # Check for collision with edge and change direction if necessary
+        if self.head[0] < 0 or self.head[0] >= width:
+            self.direction[0] *= -1
+        if self.head[1] < 0 or self.head[1] >= height:
+            self.direction[1] *= -1
+
+        # Move body pixels
+        self.body.insert(0, next_pos)
+        self.body.pop()
+
 snake = SnakePixels(width // 2, height // 2)
 
 try:
     while True:
         unicorn.clear()
-        snake.move()
+        # Detect direction of movement and move accordingly
+        snake.move_through_edges()
         unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
         for pixel in snake.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
         unicorn.show()
-        time.sleep(0.1)
+        time.sleep(0.5)
 except KeyboardInterrupt:
     unicorn.clear()
     unicorn.show()
