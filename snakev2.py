@@ -17,11 +17,15 @@ unicorn.rotation(0)
 unicorn.brightness(0.3)
 width,height=unicorn.get_shape()
 
+#print(f"Width: {width}, Height: {height}")
+
 class SnakePixels:
     def __init__(self, x, y):
         self.head = [x, y]
-        self.body = [[x - i, y] for i in range(1, 4)]
+        self.body = [[x - i, y] for i in range(1, 3)]
         self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
+        #self.direction = [0,1]  # vertical direction
+        #self.direction = [1,0]  # horizontal direction
         self.head_colour = [0, 0, 255]  # blue color
         self.body_colour = [0, 255, 0]  # blue color
 
@@ -59,9 +63,9 @@ class SnakePixels:
         self.head[1] += self.direction[1]
 
         # Check for collision with edge and change direction if necessary
-        if self.head[0] < 0 or self.head[0] >= width:
+        if self.head[0] <= 0 or self.head[0] >= width - 1:
             self.direction[0] *= -1
-        if self.head[1] < 0 or self.head[1] >= height:
+        if self.head[1] <= 0 or self.head[1] >= height - 1:
             self.direction[1] *= -1
 
         # Move body pixels
@@ -73,8 +77,8 @@ snake = SnakePixels(width // 2, height // 2)
 try:
     while True:
         unicorn.clear()
-        # Detect direction of movement and move accordingly
-        snake.move_through_edges()
+        #snake.move_through_edges()
+        snake.move_bounce_edges()
         unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
         for pixel in snake.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
