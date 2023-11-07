@@ -46,6 +46,17 @@ class SnakePixels:
             self.head[0] = width - 1
             self.direction[0] = -1
             self.head[1] += 1
+
+        # If the head of the snake reaches the bottom of the screen, change the direction
+        # of the snake and move it one pixel up.
+        if self.head[1] >= height:
+            self.head[1] = height - 1
+            self.direction[1] = -1
+        # If the head of the snake reaches the top of the screen, change the direction
+        # of the snake and move it one pixel down.
+        elif self.head[1] < 0:
+            self.head[1] = 0
+            self.direction[1] = 1
         
         # Move body pixels
         self.body.insert(0, next_pos)
@@ -56,7 +67,7 @@ snake = SnakePixels(width // 2, height // 2)
 try:
     while True:
         unicorn.clear()
-        #snake.move_through_edges()
+        
         snake.move_bounce_horizontal()
         unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
         for pixel in snake.body:
