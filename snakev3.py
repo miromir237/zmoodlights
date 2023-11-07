@@ -43,11 +43,11 @@ class SnakePixels:
             self.direction[0] = 1
             # If the head of the snake reaches the bottom of the screen, change the direction
             # of the snake and move it one pixel up.
-            if self.head[1] <= height:
+            if self.head[1] >= height:
                 self.head[1] -= 1
             # If the head of the snake reaches the top of the screen, change the direction
             # of the snake and move it one pixel down.
-            elif self.head[1] >= 0:
+            elif self.head[1] < 0:
                 self.head[1] += 1
             
         elif self.head[0] >= width:
@@ -55,11 +55,11 @@ class SnakePixels:
             self.direction[0] = -1
             # If the head of the snake reaches the bottom of the screen, change the direction
             # of the snake and move it one pixel up.
-            if self.head[1] <= height:
+            if self.head[1] >= height:
                 self.head[1] -= 1
             # If the head of the snake reaches the top of the screen, change the direction
             # of the snake and move it one pixel down.
-            elif self.head[1] >= 0:
+            elif self.head[1] < 0:
                 self.head[1] += 1
             
         
