@@ -23,7 +23,7 @@ class SnakePixels:
     def __init__(self, x, y):
         self.head = [x, y]
         self.body = [[x - i, y] for i in range(1, 3)]
-        self.direction = [1,0]  # horizontal direction
+        self.direction = [1,1]  # horizontal direction
         self.head_colour = [0, 0, 255]  # blue color
         self.body_colour = [0, 255, 0]  # blue color
 
