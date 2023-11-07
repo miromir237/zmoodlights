@@ -73,8 +73,8 @@ class SnakePixelsHorizontal:
         self.head = [x, y]
         self.body = [[x - i, y] for i in range(1, 3)]
         self.direction = [1,1]  # horizontal direction
-        self.head_colour = [0, 0, 255]  # blue color
-        self.body_colour = [0, 255, 0]  # blue color
+        self.head_colour = [255, 0, 255]  # blue color
+        self.body_colour = [255, 255, 0]  # blue color
 
     # This method is used to move the snake around the screen on horizontal lines and bounce it
     # off the edges. When it bounces it also moves one pixel down or up depending on the direction.
@@ -114,8 +114,8 @@ class SnakePixelsVertical:
         self.head = [x, y]
         self.body = [[x - i, y] for i in range(1, 3)]
         self.direction = [1,1]  # horizontal direction
-        self.head_colour = [0, 0, 255]  # blue color
-        self.body_colour = [0, 255, 0]  # blue color
+        self.head_colour = [255, 0, 0]  # blue color
+        self.body_colour = [0, 255, 255]  # blue color
 
     # This method is used to move the snake around the screen on horizontal lines and bounce it
     # off the edges. When it bounces it also moves one pixel down or up depending on the direction.
@@ -151,7 +151,7 @@ class SnakePixelsVertical:
         self.body.insert(0, next_pos)
         self.body.pop()        
 
-snake = SnakePixels(randint(0, width - 1), randint(0, height - 1))
+#snake = SnakePixels(randint(0, width - 1), randint(0, height - 1))
 snake_horizontal = SnakePixelsHorizontal(0, 0)
 snake_vertical = SnakePixelsVertical(7, 3)   
 
@@ -159,30 +159,25 @@ try:
     while True:
         unicorn.clear()
         # If direction is [0, 0], generate a new random direction
-        if snake.direction == [0, 0]:
-            snake.direction = [randint(-1, 1), randint(-1, 1)]
-        snake.move_through_edges()
-        unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
-        for pixel in snake.body:
-            unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
-        time.sleep(0.1)
-        unicorn.show()
+#        if snake.direction == [0, 0]:
+#            snake.direction = [randint(-1, 1), randint(-1, 1)]
+#        snake.move_through_edges()
+#        unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
+#        for pixel in snake.body:
+#            unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
 
-        unicorn.clear()
         snake_horizontal.move_bounce_horizontal()
         unicorn.set_pixel(snake_horizontal.head[0], snake_horizontal.head[1], *snake_horizontal.head_colour)
         for pixel in snake_horizontal.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake_horizontal.body_colour)
-        time.sleep(0.1)
-        unicorn.show()
 
-        unicorn.clear()
         snake_vertical.move_bounce_vertical()
         unicorn.set_pixel(snake_vertical.head[0], snake_vertical.head[1], *snake_vertical.head_colour)
         for pixel in snake_vertical.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake_vertical.body_colour)
-        time.sleep(0.1)
+
         unicorn.show()
+        time.sleep(0.1)
 except KeyboardInterrupt:
     unicorn.clear()
     unicorn.show()

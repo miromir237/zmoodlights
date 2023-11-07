@@ -72,7 +72,7 @@ try:
         for pixel in snake.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
         unicorn.show()
-        time.sleep(0.5)
+        time.sleep(0.1)
 except KeyboardInterrupt:
     unicorn.clear()
     unicorn.show()
