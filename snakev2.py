@@ -24,8 +24,6 @@ class SnakePixels:
         self.head = [x, y]
         self.body = [[x - i, y] for i in range(1, 3)]
         self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
-        #self.direction = [0,1]  # vertical direction
-        #self.direction = [1,0]  # horizontal direction
         self.head_colour = [0, 0, 255]  # blue color
         self.body_colour = [0, 255, 0]  # blue color
 
@@ -79,8 +77,16 @@ snake = SnakePixels(randint(0, width - 1), randint(0, height - 1))
 try:
     while True:
         unicorn.clear()
+
+        # If direction is [0, 0], generate a new random direction
+        if snake.direction == [0, 0]:
+            snake.direction = [randint(-1, 1), randint(-1, 1)]
+        # If direction is [0,1] or [1,0], move the snake through the edges
+        if snake.direction in [[0, 1], [1, 0]]:
+            snake.move_through_edges()
+
         #snake.move_through_edges()
-        snake.move_bounce_edges()
+        #snake.move_bounce_edges()
         unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
         for pixel in snake.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
