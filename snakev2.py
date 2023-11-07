@@ -72,7 +72,9 @@ class SnakePixels:
         self.body.insert(0, next_pos)
         self.body.pop()
 
-snake = SnakePixels(width // 2, height // 2)
+# Randomize starting position
+
+snake = SnakePixels(randint(0, width - 1), randint(0, height - 1))
 
 try:
     while True:
