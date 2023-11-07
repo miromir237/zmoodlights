@@ -49,13 +49,13 @@ class SnakePixels:
         # If the head of the snake reaches the bottom of the screen, change the direction
         # of the snake and move it one pixel up.
         if self.head[1] > height - 1:
-            self.direction[1] *= -1 
-            #self.head[1] += self.direction[1]
+            self.direction[1] = -1 
+            self.head[1] += self.direction[1] - 1
         # If the head of the snake reaches the top of the screen, change the direction
         # of the snake and move it one pixel down.
         elif self.head[1] < 0:
-            self.direction[1] *= -1 
-            #self.head[1] += self.direction[1]
+            self.direction[1] = 1 
+            self.head[1] += self.direction[1] + 1
         # Move body pixels
         self.body.insert(0, next_pos)
         self.body.pop()
