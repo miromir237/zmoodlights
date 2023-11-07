@@ -7,7 +7,7 @@ import unicornhat as unicorn
 
 
 print("""Snake pixels
-You should see snake moving around the screen and bouncing off the edges.
+You should see snake moving around the screen and bouncing off the edges on horizontal axis primary.
 If you're using a Unicorn HAT and only half the screen lights up,
 edit this example and  change 'unicorn.AUTO' to 'unicorn.HAT' below.
 """)
