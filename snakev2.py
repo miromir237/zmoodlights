@@ -77,13 +77,14 @@ snake = SnakePixels(randint(0, width - 1), randint(0, height - 1))
 try:
     while True:
         unicorn.clear()
-
         # If direction is [0, 0], generate a new random direction
         if snake.direction == [0, 0]:
             snake.direction = [randint(-1, 1), randint(-1, 1)]
         # If direction is [0,1] or [1,0], move the snake through the edges
-        if snake.direction in [[0, 1], [1, 0]]:
+        if snake.direction in [[0, 1], [1, 0], [0, -1], [-1, 0]]:
             snake.move_through_edges()
+        else:
+            snake.move_bounce_edges()
 
         #snake.move_through_edges()
         #snake.move_bounce_edges()
