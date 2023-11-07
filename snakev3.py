@@ -57,7 +57,7 @@ try:
     while True:
         unicorn.clear()
         #snake.move_through_edges()
-        snake.move_bounce_edges()
+        snake.move_bounce_horizontal()
         unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
         for pixel in snake.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
