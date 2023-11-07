@@ -52,7 +52,6 @@ class SnakePixels:
                 self.direction[1] = 1
                 self.head[1] += 1
             
-
         elif self.head[0] >= width:
             self.head[0] = width - 1
             self.direction[0] = -1
