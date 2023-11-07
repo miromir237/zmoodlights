@@ -34,7 +34,6 @@ class SnakePixels:
         next_pos = list(self.head)
         # Update head position
         self.head[0] += self.direction[0]
-        self.head[1] += self.direction[1]
 
         # If the head of the snake reaches the edge of the screen, change the direction
         # of the snake and move it one pixel down or up depending on the direction.
@@ -44,11 +43,13 @@ class SnakePixels:
             # If the head of the snake reaches the bottom of the screen, change the direction
             # of the snake and move it one pixel up.
             if self.head[1] >= height:
-                self.head[1] -= 1
+                self.direction[1] *= -1 
+                self.head[1] += self.direction[1]
             # If the head of the snake reaches the top of the screen, change the direction
             # of the snake and move it one pixel down.
             elif self.head[1] < 0:
-                self.head[1] += 1
+                self.direction[1] *= -1 
+                self.head[1] += self.direction[1]
             
         elif self.head[0] >= width:
             self.head[0] = width - 1
@@ -56,11 +57,13 @@ class SnakePixels:
             # If the head of the snake reaches the bottom of the screen, change the direction
             # of the snake and move it one pixel up.
             if self.head[1] >= height:
-                self.head[1] -= 1
+                self.direction[1] *= -1 
+                self.head[1] += self.direction[1]
             # If the head of the snake reaches the top of the screen, change the direction
             # of the snake and move it one pixel down.
             elif self.head[1] < 0:
-                self.head[1] += 1
+                self.direction[1] *= -1 
+                self.head[1] += self.direction[1]
             
         
         # Move body pixels
