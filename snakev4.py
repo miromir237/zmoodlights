@@ -17,7 +17,7 @@ unicorn.rotation(0)
 unicorn.brightness(0.3)
 width,height=unicorn.get_shape()
 
-print(f"Width: {width}, Height: {height}")
+#print(f"Width: {width}, Height: {height}")
 
 class SnakePixels:
     def __init__(self, x, y):
@@ -66,7 +66,7 @@ snake = SnakePixels(width // 2, height // 2)
 try:
     while True:
         unicorn.clear()
-        print(f"Head: {snake.head} and direction: {snake.direction}")
+        #print(f"Head: {snake.head} and direction: {snake.direction}")
         snake.move_bounce_vertical()
         unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
         for pixel in snake.body:
