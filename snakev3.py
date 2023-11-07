@@ -72,7 +72,7 @@ snake = SnakePixels(width // 2, height // 2)
 try:
     while True:
         unicorn.clear()
-        print(f"Head: {snake.head}")
+        print(f"Head: {snake.head} and direction: {snake.direction}")
         snake.move_bounce_horizontal()
         unicorn.set_pixel(snake.head[0], snake.head[1], *snake.head_colour)
         for pixel in snake.body:
