@@ -7,7 +7,7 @@ import unicornhat as unicorn
 
 
 print("""Snake pixels
-You should see randomly coloured dots crossing paths with each other.
+You should see snake moving around the screen and bouncing off the edges.
 If you're using a Unicorn HAT and only half the screen lights up,
 edit this example and  change 'unicorn.AUTO' to 'unicorn.HAT' below.
 """)
@@ -17,7 +17,7 @@ unicorn.rotation(0)
 unicorn.brightness(0.3)
 width,height=unicorn.get_shape()
 
-#print(f"Width: {width}, Height: {height}")
+print(f"Width: {width}, Height: {height}")
 
 class SnakePixels:
     def __init__(self, x, y):
