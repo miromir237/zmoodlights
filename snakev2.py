@@ -22,7 +22,7 @@ width,height=unicorn.get_shape()
 class SnakePixels:
     def __init__(self, x, y):
         self.head = [x, y]
-        self.body = [[x - i, y] for i in range(1, 3)]
+        self.body = [[x - i, y] for i in range(1, 4)]
         self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
         self.head_colour = [0, 0, 255]  # blue color
         self.body_colour = [0, 255, 0]  # blue color
@@ -92,7 +92,7 @@ try:
         for pixel in snake.body:
             unicorn.set_pixel(pixel[0], pixel[1], *snake.body_colour)
         unicorn.show()
-        time.sleep(0.5)
+        time.sleep(0.1)
 except KeyboardInterrupt:
     unicorn.clear()
     unicorn.show()
