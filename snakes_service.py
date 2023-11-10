@@ -32,9 +32,12 @@ class SnakePixelsThrough_edges:
     def __init__(self, x, y):
         self.head = [x, y]
         self.body = [[x - i, y] for i in range(1, 3)]
-        self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
         self.head_colour = [0, 0, 255]  # blue color
         self.body_colour = [0, 255, 0]  # blue color
+        self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
+
+        if self.direction == [0,0]: # if the direction is [0,0], change it to [1,1]
+            self.direction = [1,1]
 
     def move(self):
         # Save current head position as next position for first body pixel
@@ -65,9 +68,13 @@ class SnakePixelsBounce_edges:
     def __init__(self, x, y):
         self.head = [x, y]
         self.body = [[x - i, y] for i in range(1, 3)]
-        self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
         self.head_colour = [0, 0, 255]  # blue color
-        self.body_colour = [0, 255, 0]  # blue color    
+        self.body_colour = [0, 255, 0]  # blue color 
+        self.direction = [randint(-1, 1), randint(-1, 1)]  # random direction
+
+        if self.direction == [0,0]: # if the direction is [0,0], change it to [1,1]
+            self.direction = [1,1]
+
     # This method is used to move the snake around the screen and bounce it
     # off the edges.
     def move(self):
