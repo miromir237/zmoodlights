@@ -210,6 +210,7 @@ def main():
         
     # While timer is not 0, move the snake around the screen
     while timer > 0:
+        unicorn.clear()
         # Move the snake around the screen
         active_snake.move()
         # Plot the snake on the Unicorn HAT
