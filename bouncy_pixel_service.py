@@ -61,7 +61,7 @@ def setBrightness(currenttime):
   # if it's between 10 am and 8 pm,
   # use dimmer brightness
   if(currenthour < 7 or currenthour > 21):
-    unicorn.brightness(0.1)
+    unicorn.brightness(0.2)
   elif (currenthour > 7 and currenthour < 16):
     unicorn.brightness(0.5)
   else:

@@ -70,4 +70,5 @@ try:
         time.sleep(0.3)
         
 except KeyboardInterrupt:
-    pass        
+    unicorn.clear()
+    unicorn.show()     
