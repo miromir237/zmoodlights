@@ -49,6 +49,15 @@ def update_positions():
         
         point.x += point.kx
         point.y += point.ky
+
+def update_colours():
+    for point in points:
+        for i in range(0, 3):
+            point.colour[i] += randint(-50, 50)
+            if point.colour[i] > 255:
+                point.colour[i] = 255
+            elif point.colour[i] < 0:
+                point.colour[i] = 0
                 
 def plot_points():
     unicorn.clear()
@@ -73,6 +82,9 @@ def main():
         points.append(LightPoint())
     plot_points()
     update_positions()
+    # update_colours() once in a while
+    if randint(0, 10) > 8:
+        update_colours()
     time.sleep(0.3)
 
 if __name__ == '__main__':
